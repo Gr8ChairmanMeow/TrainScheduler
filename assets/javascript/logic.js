@@ -14,9 +14,10 @@ var config = {
   var trainName;
   var dest;
   var firstTime;
-  var firstTime_format;
   var fMin;
-  var current_time = new moment (); //.format("HH:mm")
+  var current_time;
+  var current_time = new moment(); //.format("HH:mm")
+
 
 $( ".btn" ).click(function(event) {
 
@@ -28,7 +29,7 @@ $( ".btn" ).click(function(event) {
 	fMin = $("#fMin").val();
 	//nextTrain
 
-	console.log(trainName + " " + dest + " " + firstTime + " " + fMin + " " + current_time + "; " + current_time.diff(firstTime,'minutes'));
+	//console.log(trainName + " " + dest + " " + firstTime + " " + fMin + " " + current_time + "; " + current_time.diff(firstTime,'minutes'));
 
 	database.ref("/choochoo").push({
 
@@ -44,60 +45,37 @@ $( ".btn" ).click(function(event) {
 
 //moment("123", "hmm").format("HH:mm")
 
-/*
-
-if (parseInt(minutes) >= 0){
-
-			console.log("In here!")
-
-			minutes = moment(childSnap.val().firstTime.replace(":",""), "Hmm").diff(moment(),'minutes');
-
-			nextTrain = childSnap.val().firstTime;
-
-		}
-		else{
-
-			minutes = moment().diff(moment(childSnap.val().firstTime.replace(":",""), "Hmm"),'minutes');
-
-			minutes = minutes % childSnap.val().fMin;
-
-			minutes = childSnap.val().fMin - minutes;
-
-			nextTrain = moment().add((minutes % childSnap.val().fMin),"minutes").format("HH:mm");
-
-		}
-
-*/
-
-
 
 database.ref("/choochoo").on("child_added",function(childSnap){
 
 		//converting childSnap.val().firstTime into "Hmm" formatted moment to compare to moment() [current time] and find .diff
 		//var minutes = moment().diff(moment(childSnap.val().firstTime.replace(":",""), "Hmm"),'minutes');
+
+		console.log(moment().format("HH:mm") + "; " + current_time.format("HH:mm"))
 		
-		var difference = moment(childSnap.val().firstTime.replace(":",""), "Hmm").diff(moment(),'minutes');
+		var difference = moment(childSnap.val().firstTime.replace(":",""), "Hmm").diff(current_time,'minutes');
 		var minutes;
 		var nextTrain;
 
 		if (parseInt(difference) >= 0){
 
-			minutes = moment(childSnap.val().firstTime.replace(":",""), "Hmm").diff(moment(),'minutes');
+			minutes = difference;
 
 			nextTrain = childSnap.val().firstTime;
 
 		}
 		else{
 
-			minutes = moment().diff(moment(childSnap.val().firstTime.replace(":",""), "Hmm"),'minutes');
+			minutes = Math.abs(difference);
 
 			minutes = minutes % childSnap.val().fMin;
 
 			minutes = childSnap.val().fMin - minutes;
 
-			nextTrain = moment().add(minutes,"minutes").format("HH:mm");
+			nextTrain = current_time.add(minutes,"minutes").format("HH:mm");
 
-			console.log(moment().format("HH:mm") + " " + minutes)
+			//console.log(moment().format("HH:mm") + " " + minutes)
+			current_time.subtract(minutes,"minutes").format("HH:mm");
 
 		}
 
