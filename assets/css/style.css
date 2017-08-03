@@ -1,0 +1,13 @@
+*{
+	box-sizing: border-box;
+}
+
+body{
+	background:grey;
+}
+/*need to be more specific when overriding bootstrap*/
+.panel-default > .panel-heading {
+	background-color: #47c5e6;
+	color:white;
+	font-weight:bold;
+}

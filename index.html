@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Train Scheduler</title>
+
+	<!--Bootstrap-->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+	<!--Font Awesome-->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+
+	<!--CSS Sheet-->
+	<link rel="stylesheet" type="text/css" href="assets/css/style.css">
+
+</head>
+<body>
+	<div class="container">
+		<div class="jumbotron text-center">
+
+  			<h1>Train Scheduler</h1>
+  			<p>(Employees Only)</p> 
+
+		</div><!--End jumbotron-->
+  
+
+  		<div class="row">
+
+			<div class="panel panel-default">
+				
+				<div class="panel-heading">Current Train Schedule</div>
+
+		    	<div class="panel-body">
+
+		    		<table class="table">
+
+					    <thead>
+
+					      <tr>
+					        <th>Train</th>
+					        <th>Destination</th>
+					        <th>Frequency (min)</th>
+					        <th>Next Arrival</th>
+					        <th>Minutes Away</th>
+					      </tr>
+
+					    </thead>
+
+					    <tbody><!--create new row and data points dyanmically-->
+
+					      <!--<tr>
+					        <td>John</td>
+					        <td>Doe</td>
+					        <td>john@example.com</td>
+					      </tr>reference-->
+
+
+					    </tbody>
+
+					  </table>
+				
+				</div>
+
+	    	</div><!--End panel-->
+
+  		</div><!--End row-->
+
+ 		<div class="row">
+
+			<div class="panel panel-default">
+				
+				<div class="panel-heading">Add Train</div>
+
+		    	<div class="panel-body">
+
+					<form action="/action_page.php">
+
+    					<div class="form-group">
+<!--Train Name-->
+					      <label for="trainName">Train Name:</label>
+					      <input type="text" class="form-control" id="trainName" placeholder="Midnight Express" name="trainName">
+
+    					</div>
+<!--Destination-->
+    					<div class="form-group">
+
+					      <label for="dest">Destination:</label>
+					      <input type="text" class="form-control" id="dest" placeholder="Los Angeles" name="dest">
+
+    					</div>
+
+    					<div class="form-group">
+
+					      <label for="firstTime">First Train Time (HH:mm - military time)</label>
+					      <input type="text" class="form-control" id="firstTime" placeholder="HH:mm" name="firstTime">
+
+    					</div>
+
+    					<div class="form-group">
+
+					      <label for="fMin">Frequency (min)</label>
+					      <input type="text" class="form-control" id="fMin" placeholder="123" name="fMin">
+
+    					</div>
+
+    					<button type="submit" class="btn btn-default">Submit</button>
+
+  					</form>
+				
+				</div><!--End panel body-->
+
+	    	</div><!--End panel-->
+
+  		</div><!--End row-->
+
+<!--moment.js-->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
+
+<!--firebase-->
+<script src="https://www.gstatic.com/firebasejs/4.2.0/firebase.js"></script>
+
+<!-- jQuery -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+<!-- Script -->
+<script type="text/javascript" src="assets/javascript/logic.js"></script>
+</body>
+</html>
